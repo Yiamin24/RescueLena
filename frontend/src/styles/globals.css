@@ -1,0 +1,183 @@
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
+
+:root {
+  --font-size: 16px;
+}
+
+/* Dark Theme (Default) */
+.dark {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-red: #FF3B30;
+  --accent-red-dark: #c02a21;
+  --accent-orange: #FF6B00;
+  --border-color: rgba(255, 59, 48, 0.1);
+  --glass-bg: rgba(26, 26, 26, 0.7);
+}
+
+/* Light Theme */
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #e5e5e5;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --accent-red: #FF3B30;
+  --accent-red-dark: #c02a21;
+  --accent-orange: #FF6B00;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+}
+
+@layer base {
+  * {
+    @apply outline-red-500/50;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-red), var(--accent-orange));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--accent-red-dark), var(--accent-red));
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 59, 48, 0.3), 0 0 40px rgba(255, 59, 48, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(255, 59, 48, 0.6), 0 0 80px rgba(255, 59, 48, 0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rotate-border {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Utility Classes */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.red-glow {
+  box-shadow: 0 0 20px rgba(255, 59, 48, 0.3), 0 0 40px rgba(255, 59, 48, 0.1);
+}
+
+.red-glow-strong {
+  box-shadow: 0 0 30px rgba(255, 59, 48, 0.5), 0 0 60px rgba(255, 59, 48, 0.3), 0 0 90px rgba(255, 59, 48, 0.1);
+}
+
+.gradient-red {
+  background: linear-gradient(135deg, #FF3B30 0%, #FF6B00 100%);
+}
+
+.gradient-red-vertical {
+  background: linear-gradient(180deg, #FF3B30 0%, #FF6B00 100%);
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #FF3B30 0%, #FF6B00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-gradient-red {
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.border-gradient-red::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #FF3B30, #FF6B00);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Tech Grid Background */
+.tech-grid {
+  background-image: 
+    linear-gradient(rgba(255, 59, 48, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 59, 48, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Scan Line Effect */
+.scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 59, 48, 0.8), transparent);
+  animation: scan-line 3s linear infinite;
+}
