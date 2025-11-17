@@ -1,7 +1,7 @@
 fastapi==0.115.0
 uvicorn[standard]==0.32.0
 python-multipart==0.0.12
-google-generativeai==0.3.2
+google-generativeai==0.8.3
 qdrant-client==1.12.1
 firebase-admin==6.6.0
 supabase==2.10.0
@@ -17,5 +17,6 @@ passlib[bcrypt]==1.7.4
 slowapi==0.1.9
 
 # Pre-built wheels for grpcio to avoid compilation
+# Using versions compatible with protobuf 5.x
 grpcio==1.68.1
 grpcio-tools==1.68.1
