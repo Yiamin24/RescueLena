@@ -17,5 +17,5 @@ passlib[bcrypt]==1.7.4
 slowapi==0.1.9
 
 # Pre-built wheels for grpcio to avoid compilation
-grpcio==1.62.0
-grpcio-tools==1.62.0
+grpcio==1.68.1
+grpcio-tools==1.68.1
